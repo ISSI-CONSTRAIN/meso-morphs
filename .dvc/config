@@ -1,0 +1,3 @@
+['remote "uwssh"']
+    url = ssh://schulz@olympus.atmos.uw.edu
+    ask_password = true
