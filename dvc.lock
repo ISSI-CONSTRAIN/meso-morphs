@@ -1,5 +1,33 @@
 schema: '2.0'
 stages:
+  download_MEASURES:
+    cmd: scp -r -C 
+      "${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos10/rmeast/MEASURES/gridded_files/"
+      data/input/MEASURES/yearly/
+    outs:
+    - path: data/input/MEASURES/yearly/
+      hash: md5
+      md5: 4da18b6e4cc6e5ea5a1ef8ca3129e6ea.dir
+      size: 1330131084
+      nfiles: 4
+  merge_yearly_MEASURES:
+    cmd: python scripts/concat_chunk.py -i "data/input/MEASURES/yearly/*" -o data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr
+    deps:
+    - path: data/input/MEASURES/yearly
+      hash: md5
+      md5: 4da18b6e4cc6e5ea5a1ef8ca3129e6ea.dir
+      size: 1330131084
+      nfiles: 4
+    - path: scripts/concat_chunk.py
+      hash: md5
+      md5: 0f4cec1afe9df3d6b5a96f11f4e1ced1
+      size: 905
+    outs:
+    - path: data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr
+      hash: md5
+      md5: f13411228f6d1a9c7c100113cf738fc6.dir
+      size: 41382589
+      nfiles: 899
   download_SGFF:
     cmd: scp -r -C 
       "${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/FFGS_Class/yearly/Daily*"

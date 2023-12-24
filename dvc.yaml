@@ -3,6 +3,10 @@ stages:
     cmd: scp -r -C "\${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/FFGS_Class/yearly/Daily*" data/input/SGFF/yearly/
     outs:
     - data/input/SGFF/yearly/
+  download_MEASURES:
+    cmd: scp -r -C "\${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos10/rmeast/MEASURES/gridded_files/" data/input/MEASURES/yearly/
+    outs:
+    - data/input/MEASURES/yearly/
   merge_yearly_SGFF:
     cmd: python scripts/concat_chunk.py -i "data/input/SGFF/yearly/*" -o data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
     deps:
@@ -10,3 +14,11 @@ stages:
     - scripts/concat_chunk.py
     outs:
     - data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
+
+  merge_yearly_MEASURES:
+    cmd: python scripts/concat_chunk.py -i "data/input/MEASURES/yearly/*" -o data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr
+    deps:
+    - data/input/MEASURES/yearly
+    - scripts/concat_chunk.py
+    outs:
+    - data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr
