@@ -20,4 +20,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     ds = xr.open_mfdataset(args.fnames, preprocess=preprocess, combine='by_coords')
-    ds.chunk({"time":10,"class":1,"latitude":150,"longitude":360}).to_zarr(args.output_filename)
+    ds.chunk({"time":10,"class":-1,"latitude":150,"longitude":360}).to_zarr(args.output_filename)
