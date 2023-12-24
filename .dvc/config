@@ -1,3 +1,7 @@
+[core]
+    remote = aws
 ['remote "uwssh"']
     url = ssh://schulz@olympus.atmos.uw.edu
     ask_password = true
+['remote "aws"']
+    url = s3://mesoscaleclassifications
