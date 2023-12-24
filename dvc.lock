@@ -10,3 +10,21 @@ stages:
       md5: bfc040e97c195c24881c5a0d1b3c1e9e.dir
       size: 4863068784
       nfiles: 18
+  merge_yearly_SGFF:
+    cmd: python scripts/concat_chunk.py -i "data/input/SGFF/yearly/*" -o data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
+    deps:
+    - path: data/input/SGFF/yearly
+      hash: md5
+      md5: bfc040e97c195c24881c5a0d1b3c1e9e.dir
+      size: 4863068784
+      nfiles: 18
+    - path: scripts/concat_chunk.py
+      hash: md5
+      md5: 0f4cec1afe9df3d6b5a96f11f4e1ced1
+      size: 905
+    outs:
+    - path: data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
+      hash: md5
+      md5: 1434c02c4bb17b4fff0f76a24bc96ad4.dir
+      size: 12804878
+      nfiles: 2649
