@@ -56,3 +56,31 @@ stages:
       md5: 1434c02c4bb17b4fff0f76a24bc96ad4.dir
       size: 12804878
       nfiles: 2649
+  download_MCC:
+    cmd: scp -r -C 
+      "${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/MODIS_MCC/yearly_files/"
+      data/input/MCC/yearly/
+    outs:
+    - path: data/input/MCC/yearly/
+      hash: md5
+      md5: ac2b299d9a97eedfa35ae469e5816ecd.dir
+      size: 4308685520
+      nfiles: 16
+  merge_yearly_MCC:
+    cmd: python scripts/concat_chunk.py -i "data/input/MCC/yearly/*" -o data/output/Daily_1x1_MCC_MODIS-IR_NorthAtlantic.zarr
+    deps:
+    - path: data/input/MCC/yearly
+      hash: md5
+      md5: ac2b299d9a97eedfa35ae469e5816ecd.dir
+      size: 4308685520
+      nfiles: 16
+    - path: scripts/concat_chunk.py
+      hash: md5
+      md5: 0f4cec1afe9df3d6b5a96f11f4e1ced1
+      size: 905
+    outs:
+    - path: data/output/Daily_1x1_MCC_MODIS-IR_NorthAtlantic.zarr
+      hash: md5
+      md5: 93256fe2a8e0887645e6ba92c577de4f.dir
+      size: 119437478
+      nfiles: 1772
