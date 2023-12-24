@@ -20,14 +20,14 @@ stages:
       nfiles: 4
     - path: scripts/concat_chunk.py
       hash: md5
-      md5: 0f4cec1afe9df3d6b5a96f11f4e1ced1
-      size: 905
+      md5: b0774674e907a9dee144f950c5e9ebe2
+      size: 906
     outs:
     - path: data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr
       hash: md5
-      md5: f13411228f6d1a9c7c100113cf738fc6.dir
-      size: 41382589
-      nfiles: 899
+      md5: 7241fd198b7900ae5da0b3b9941a1745.dir
+      size: 41268984
+      nfiles: 164
   download_SGFF:
     cmd: scp -r -C 
       "${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/FFGS_Class/yearly/Daily*"
@@ -48,14 +48,14 @@ stages:
       nfiles: 18
     - path: scripts/concat_chunk.py
       hash: md5
-      md5: 0f4cec1afe9df3d6b5a96f11f4e1ced1
-      size: 905
+      md5: b0774674e907a9dee144f950c5e9ebe2
+      size: 906
     outs:
     - path: data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
       hash: md5
-      md5: 1434c02c4bb17b4fff0f76a24bc96ad4.dir
-      size: 12804878
-      nfiles: 2649
+      md5: 916ba14cd379529445958a9d4775e537.dir
+      size: 12729753
+      nfiles: 675
   download_MCC:
     cmd: scp -r -C 
       "${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/MODIS_MCC/yearly_files/"
@@ -76,11 +76,65 @@ stages:
       nfiles: 16
     - path: scripts/concat_chunk.py
       hash: md5
-      md5: 0f4cec1afe9df3d6b5a96f11f4e1ced1
-      size: 905
+      md5: b0774674e907a9dee144f950c5e9ebe2
+      size: 906
     outs:
     - path: data/output/Daily_1x1_MCC_MODIS-IR_NorthAtlantic.zarr
       hash: md5
-      md5: 93256fe2a8e0887645e6ba92c577de4f.dir
-      size: 119437478
-      nfiles: 1772
+      md5: 2e07cc5077439460d5a5decdabcadf77.dir
+      size: 119424425
+      nfiles: 602
+  create_reference_SGFF:
+    cmd: python scripts/create_reference_file.py data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
+      catalog/references/SGFF.json
+    deps:
+    - path: data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
+      hash: md5
+      md5: 916ba14cd379529445958a9d4775e537.dir
+      size: 12729753
+      nfiles: 675
+    - path: scripts/create_reference_file.py
+      hash: md5
+      md5: 2f067be2da506244c47fecaf5266531c
+      size: 1601
+    outs:
+    - path: catalog/references/SGFF.json
+      hash: md5
+      md5: 8b522061800ffa54202d7a0f74e3b5c4
+      size: 66669
+  create_reference_MEASURES:
+    cmd: python scripts/create_reference_file.py data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr
+      catalog/references/MEASURES.json
+    deps:
+    - path: data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr
+      hash: md5
+      md5: 7241fd198b7900ae5da0b3b9941a1745.dir
+      size: 41268984
+      nfiles: 164
+    - path: scripts/create_reference_file.py
+      hash: md5
+      md5: 2f067be2da506244c47fecaf5266531c
+      size: 1601
+    outs:
+    - path: catalog/references/MEASURES.json
+      hash: md5
+      md5: c277b4a7fe5952a9bf0c8fba6a1bdddb
+      size: 16080
+  create_reference_MCC:
+    cmd: python scripts/create_reference_file.py data/output/Daily_1x1_MCC_MODIS-IR_NorthAtlantic.zarr
+      catalog/references/MCC.json
+    deps:
+    - path: data/output/Daily_1x1_MCC_MODIS-IR_NorthAtlantic.zarr
+      hash: md5
+      md5: 2e07cc5077439460d5a5decdabcadf77.dir
+      size: 119424425
+      nfiles: 602
+    - path: scripts/create_reference_file.py
+      hash: md5
+      md5: 2f067be2da506244c47fecaf5266531c
+      size: 1601
+    outs:
+    - path: catalog/references/MCC.json
+      hash: md5
+      md5: 19a382cb4d52d58b1ed352ec35f35ec1
+      size: 59442

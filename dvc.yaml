@@ -2,15 +2,21 @@ stages:
   download_SGFF:
     cmd: scp -r -C "\${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/FFGS_Class/yearly/Daily*" data/input/SGFF/yearly/
     outs:
-    - data/input/SGFF/yearly/
+    - data/input/SGFF/yearly/:
+        cache: false
+        persist: false
   download_MEASURES:
     cmd: scp -r -C "\${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos10/rmeast/MEASURES/gridded_files/" data/input/MEASURES/yearly/
     outs:
-    - data/input/MEASURES/yearly/
+    - data/input/MEASURES/yearly/:
+        cache: false
+        persist: false
   download_MCC:
     cmd: scp -r -C "\${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/MODIS_MCC/yearly_files/" data/input/MCC/yearly/
     outs:
-    - data/input/MCC/yearly/
+    - data/input/MCC/yearly/:
+        cache: false
+        persist: false
   merge_yearly_SGFF:
     cmd: python scripts/concat_chunk.py -i "data/input/SGFF/yearly/*" -o data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
     deps:
@@ -32,3 +38,25 @@ stages:
     - scripts/concat_chunk.py
     outs:
     - data/output/Daily_1x1_MCC_MODIS-IR_NorthAtlantic.zarr
+  create_reference_SGFF:
+    cmd: python scripts/create_reference_file.py data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr catalog/references/SGFF.json
+    deps:
+    - scripts/create_reference_file.py
+    - data/output/Daily_1x1_SGFF_MODIS-IR_NorthAtlantic.zarr
+    outs:
+    - catalog/references/SGFF.json
+  create_reference_MEASURES:
+    cmd: python scripts/create_reference_file.py data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr catalog/references/MEASURES.json
+    deps:
+    - scripts/create_reference_file.py
+    - data/output/Daily_1x1_MEASURES_MODIS-IR_NorthAtlantic.zarr
+    outs:
+    - catalog/references/MEASURES.json
+  create_reference_MCC:
+    cmd: python scripts/create_reference_file.py data/output/Daily_1x1_MCC_MODIS-IR_NorthAtlantic.zarr catalog/references/MCC.json
+    deps:
+    - scripts/create_reference_file.py
+    - data/output/Daily_1x1_MCC_MODIS-IR_NorthAtlantic.zarr
+    outs:
+    - catalog/references/MCC.json
+
