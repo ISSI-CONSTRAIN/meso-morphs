@@ -1,0 +1,12 @@
+schema: '2.0'
+stages:
+  download_SGFF:
+    cmd: scp -r -C 
+      "${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/FFGS_Class/yearly/Daily*"
+      data/input/SGFF/yearly/
+    outs:
+    - path: data/input/SGFF/yearly/
+      hash: md5
+      md5: bfc040e97c195c24881c5a0d1b3c1e9e.dir
+      size: 4863068784
+      nfiles: 18

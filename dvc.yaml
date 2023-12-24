@@ -1,0 +1,5 @@
+stages:
+  download_SGFF:
+    cmd: scp -r -C "\${SSH_USERNAME}@olympus.atmos.uw.edu:/home/disk/eos5/rmeast/FFGS_Class/yearly/Daily*" data/input/SGFF/yearly/
+    outs:
+    - data/input/SGFF/yearly/
