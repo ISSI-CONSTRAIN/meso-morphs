@@ -6,15 +6,21 @@ sources:
   SGFF:
     args:
       urlpath: reference::https://raw.githubusercontent.com/ISSI-CONSTRAIN/meso-morphs/main/catalog/references/SGFF.json
+      storage_options:
+        remote_options: {'anon':True}
     description: Daily 1x1 SGFF MODIS-IR NorthAtlantic
     driver: zarr
   MCC:
     args:
       urlpath: reference::https://raw.githubusercontent.com/ISSI-CONSTRAIN/meso-morphs/main/catalog/references/MCC.json
+      storage_options:
+        remote_options: {'anon':True}
     description: Daily 1x1 MCC NorthAtlantic
     driver: zarr
   MEASURES:
     args:
       urlpath: reference::https://raw.githubusercontent.com/ISSI-CONSTRAIN/meso-morphs/main/catalog/references/MEASURES.json
+      storage_options:
+        remote_options: {'anon':True}
     description: Daily 1x1 MEASURES NorthAtlantic
     driver: zarr
