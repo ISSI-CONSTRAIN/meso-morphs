@@ -4,14 +4,32 @@
 
 This repository contains a collection of post-processed mesoscale cloud classifications.
 
+## Installation of dependencies
+The dependencies are listed in `environment.yml` and can be installed e.g. with conda or mamba:
+```
+mamba env create -f environment.yml
+```
+or directly into an existing python environment with
+```
+mamba install python intake-xarray xarray s3fs
+```
+mamba can be downloaded at https://github.com/conda-forge/miniforge/releases/
+
 ## Usage
 
 To access the mesoscale cloud morphology datasets, the following lines are sufficient (after installing any dependencies):
 
-```
+```python
 import intake
 cat = intake.open_catalog("https://raw.githubusercontent.com/ISSI-CONSTRAIN/meso-morphs/main/catalog/catalog.yaml")
 ds = cat.SGFF.to_dask()
+```
+
+## Non-python usage
+In case the dataset will be handled in a software environment different to python, it might be easiest to store a local copy of the dataset by running the above mentioned python instructions and save the datasets as netCDF files with:
+
+```python
+ds.to_netCDF("SGFF_classifications.nc")
 ```
 
 ## Reproducability / Updating of datasets
