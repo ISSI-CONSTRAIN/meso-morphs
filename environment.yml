@@ -1,0 +1,8 @@
+name: mesomorph
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - intake-xarray
+  - xarray
+  - s3fs
