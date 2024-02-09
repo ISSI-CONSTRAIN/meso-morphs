@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: Eastman
+  given-names: Ryan
+- family-names: Schulz
+  given-names: Hauke
+- family-names: McCoy
+  given-names: Isabel
+- family-names: Wood
+  given-names: Rob
+date-released: '2024-02-09'
+doi: 10.5281/zenodo.10641821
+license:
+- cc0-1.0
+title: Joint Mesoscale Cloud Morphology Dataset
+type: dataset
+version: v2024.02.1
+url: "https://github.com/ISSI-CONSTRAIN/meso-morphs"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: Eastman
+    given-names: Ryan
+  - family-names: Schulz
+    given-names: Hauke
+  - family-names: McCoy
+    given-names: Isabel
+  - family-names: Wood
+    given-names: Rob
+  doi: "https://doi.org/10.5194/egusphere-2023-2118"
+  journal: "EGUsphere [preprint]"
+  title: "A Survey of Radiative and Physical Properties of North Atlantic Mesoscale Cloud Morphologies from Multiple Identification Methodologies"
+  year: 2024
