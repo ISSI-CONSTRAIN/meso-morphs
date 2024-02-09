@@ -1,0 +1,22 @@
+{
+    "title": "Joint Mesoscale Cloud Morphology Dataset",
+    "description": "The catalog referencing the joint mesoscale morphology dataset.",
+    "access_right": "open",
+    "license": "cc-zero",
+    "notes": "The license (CC-0) applies to the dataset <b>catalog</b>. The individual datasets may be subject to different terms. Please cite [Eastman et al. (2024)](https://doi.org/10.5194/egusphere-2023-2118) and all used morphology datasets.",
+    "upload_type": "dataset",
+    "creators": [
+        {
+            "name": "Eastman, Ryan"
+        },
+        {
+            "name": "Schulz, Hauke"
+        },
+        {
+            "name": "McCoy, Isabel"
+        },
+        {
+            "name": "Wood, Rob"
+        }
+    ]
+}
