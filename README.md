@@ -12,7 +12,7 @@ mamba env create -f environment.yml
 ```
 or directly into an existing python environment with
 ```
-mamba install python intake-xarray xarray s3fs "intake<3.0.0"
+mamba install python intake-xarray xarray s3fs "intake<2.0.0"
 ```
 mamba can be downloaded at https://github.com/conda-forge/miniforge/releases/
 

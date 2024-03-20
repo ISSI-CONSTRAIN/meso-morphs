@@ -6,3 +6,4 @@ dependencies:
   - intake-xarray
   - xarray
   - s3fs
+  - intake<2.0.0
