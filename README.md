@@ -30,7 +30,7 @@ ds = cat.SGFF.to_dask()
 In case the dataset will be handled in a software environment different to python, it might be easiest to store a local copy of the dataset by running the above mentioned python instructions and save the datasets as netCDF files with:
 
 ```python
-ds.to_netCDF("SGFF_classifications.nc")
+ds.to_netcdf("SGFF_classifications.nc")
 ```
 
 ## Reproducability / Updating of datasets
