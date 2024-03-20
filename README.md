@@ -26,6 +26,12 @@ cat = intake.open_catalog("https://raw.githubusercontent.com/ISSI-CONSTRAIN/meso
 ds = cat.SGFF.to_dask()
 ```
 
+Further catalog entries, like those referencing the `MCC` and `MEASURES` dataset, can be listed with
+
+```
+list(cat)
+```
+
 ## Non-python usage
 In case the dataset will be handled in a software environment different to python, it might be easiest to store a local copy of the dataset by running the above mentioned python instructions and save the datasets as netCDF files with:
 
